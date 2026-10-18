@@ -14,25 +14,34 @@ Click **Yes** on the admin prompt and the TweakHub window opens.
 
 Or download this repo and double-click `TweakHub.bat`.
 
-From an admin PowerShell instead:
-
-```powershell
-powershell -ExecutionPolicy Bypass -File .\TweakHub.ps1
-```
-
 ## Strength presets
 
 | Preset | What it ticks |
 |---|---|
-| Light (green) | Safe for any PC: power plan, GPU scheduling, mouse acceleration off, Game DVR off, telemetry and ads off, obvious bloat apps |
-| Balanced (amber) | Light plus the gaming tweaks: timer resolution, CPU boost, network latency, USB power, game priority, startup apps |
+| Light (green) | Safe for any PC: power plan, GPU scheduling, mouse acceleration off, Game DVR off, telemetry and ads off, browser debloat, obvious bloat apps |
+| Balanced (amber) | Light plus the gaming tweaks: benchmarked timer resolution, CPU boost, Wi-Fi and network latency, USB power, game priority, startup apps |
 | Max (red) | Everything, including VBS/hypervisor off, dynamic tick, search indexing and Xbox services. Read the yellow warnings |
-| Manual (grey) | Never ticked by a preset. Hardware-specific or risky items you choose yourself |
+| Manual (grey) | Never ticked by a preset. App and browser removal, hardware switches and other choices only you can make |
 
 ## Tabs
 
-Performance, Input, Network, Games, Privacy & Background, Startup Apps, Debloat Apps, and Laptop & GPU.
-Startup Apps and Debloat Apps are built from what is actually installed on the PC.
+| Tab | What is in it |
+|---|---|
+| Performance | Power plan, CPU boost, GPU scheduling, benchmarked timer resolution, kernel timer, VBS, visual effects, Fast Startup |
+| Input | Mouse acceleration, keyboard repeat, Sticky Keys, USB power saving, input buffers |
+| Network | Wi-Fi and Ethernet power saving, roaming, background scans, packet coalescing, transmit power, 5 GHz, Nagle. Works on Intel, Realtek, MediaTek, Qualcomm/Killer and Broadcom cards |
+| Games | Game Mode, Game DVR, fullscreen optimizations, per-game High priority, Fortnite settings |
+| Browsers | Debloat Edge, Chrome, Firefox, Brave and Opera, remove any of them, including Microsoft Edge |
+| Privacy & Background | Telemetry, ads, Bing in Start search, Copilot and Recall, activity history, update sharing, services, cleanup |
+| Startup Apps | Every app that starts with Windows, with its icon |
+| Debloat Apps | Every Microsoft app, Store app and desktop program on the PC, with its icon |
+| Laptop & GPU | Run games on the dedicated GPU, plus brand-specific switches |
+
+Use the search box to find any tweak or app across all tabs.
+
+## Timer resolution
+
+TweakHub does not just set the lowest timer value. It tests every value from 0.500 to 0.600 ms on the PC, re-tests the best five, and keeps the one where Windows wakes up most accurately and steadily. The result is shown as a chart on the card. Close games while it runs (about 15 seconds).
 
 ## Using the dedicated GPU (laptops)
 
@@ -49,7 +58,7 @@ dGPU-only (MUX) mode needs a restart and uses much more battery.
 
 - Every registry value, service, scheduled task, power setting and network adapter setting is backed up before it changes.
 - Tick items and press **Undo selected** to put the original values back.
-- App removals and temp cleanup are tagged **No undo**. Reinstall removed apps from the Microsoft Store.
+- App removals, browser removals and cleanups are tagged **No undo**. Reinstall removed apps from the Microsoft Store or the app's website.
 - A Windows restore point is created before each run unless you untick it.
 
 Backups and logs live in `C:\ProgramData\TweakHub`. Keep `backup.json` if you want undo to keep working.
@@ -66,4 +75,5 @@ Dry run opens the same window and logs every change it would make. It does not n
 
 - Some changes need a restart. They have a blue **Restart** tag, and TweakHub offers to restart at the end.
 - Network adapters restart once at the end of a run, so the internet drops for a few seconds.
+- Browser debloat uses the browsers' official policies, so the browser shows "managed by your organization".
 - Run it from the Windows account you game on. Settings for your user (mouse, keyboard, startup apps) apply to the account that runs it.
